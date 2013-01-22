@@ -23,27 +23,7 @@ else
 fi
 
 # Install plugins:
-PLUGINS=(
-  "sstephenson:rbenv-vars"
-  "sstephenson:ruby-build"
-  "fesplugas:rbenv-installer"
-)
-
-for plugin in ${PLUGINS[@]} ; do
-
-  KEY=${plugin%%:*}
-  VALUE=${plugin#*:}
-
-  RBENV_PLUGIN_ROOT="${RBENV_ROOT}/plugins/$VALUE"
-  if [ ! -d "$RBENV_PLUGIN_ROOT" ] ; then
-    git clone https://github.com/$KEY/$VALUE.git $RBENV_PLUGIN_ROOT
-  else
-    cd $RBENV_PLUGIN_ROOT
-    echo "Pulling $VALUE updates."
-    git pull
-  fi
-
-done
+rbenv-plugin sstephenson:rbenv-vars sstephenson:ruby-build fesplugas:rbenv-installer
 
 # Show help if `.rbenv` is not in the path:
 if [ ! $(which rbenv) ]; then
