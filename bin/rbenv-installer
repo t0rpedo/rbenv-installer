@@ -47,7 +47,7 @@ else
 fi
 
 # Install plugins:
-rbenv-plugins sstephenson:rbenv-vars sstephenson:ruby-build
+$RBENV_ROOT/plugins/$VALUE/bin/rbenv-plugins sstephenson:rbenv-vars sstephenson:ruby-build
 
 # Show help if `.rbenv` is not in the path:
 if [ ! $(which rbenv) ]; then
