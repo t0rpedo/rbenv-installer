@@ -39,7 +39,7 @@ fi
 # If the user hasn't specified which rbenv-install branch
 # to install, we default to the development branch
 if [ "x$INSTALLER_BRANCH" = "x" ]; then
-  INSTALLER_BRANCH=develop
+  INSTALLER_BRANCH=master
 fi
 
 # Install rbenv-installer
@@ -51,9 +51,10 @@ if [ ! -d "$RBENV_PLUGIN_ROOT" ] ; then
     mkdir -p $RBENV_PLUGIN_ROOT
     cd $RBENV_PLUGIN_ROOT
     git init
-    git remote add -t $INSTALLER_BRANCH origin https://github.com/$KEY/$VALUE.git
-    git remote update origin
+    git remote add origin https://github.com/$KEY/$VALUE.git
+    git fetch --verbose --depth=1 origin +$INSTALLER_BRANCH:refs/remotes/origin/$INSTALLER_BRANCH
     git checkout $INSTALLER_BRANCH
+
 else
   cd $RBENV_PLUGIN_ROOT
   git pull
