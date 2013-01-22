@@ -14,8 +14,8 @@ rbenv_git_init(){
   cd $RBENV_ROOT
   if [ ! -d '.git' ]; then
     git init
-    git remote add -t $RBENV_BRANCH origin https://github.com/sstephenson/rbenv.git
-    git remote update origin
+    git remote add origin https://github.com/sstephenson/rbenv.git
+    git fetch --verbose --depth=1 origin +$RBENV_BRANCH:refs/remotes/origin/$RBENV_BRANCH
     git checkout $RBENV_BRANCH
   fi
 }
@@ -54,7 +54,6 @@ if [ ! -d "$RBENV_PLUGIN_ROOT" ] ; then
     git remote add origin https://github.com/$KEY/$VALUE.git
     git fetch --verbose --depth=1 origin +$INSTALLER_BRANCH:refs/remotes/origin/$INSTALLER_BRANCH
     git checkout $INSTALLER_BRANCH
-
 else
   cd $RBENV_PLUGIN_ROOT
   git pull
