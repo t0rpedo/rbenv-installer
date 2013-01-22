@@ -14,6 +14,12 @@ if [ -z "${RBENV_ROOT}" ]; then
   RBENV_ROOT="$HOME/.rbenv"
 fi
 
+# If the user hasn't specified which rbenv-plugin branch
+# to install, we default to the master branch
+if [ "x$PLUGIN_BRANCH" = "x" ]; then
+  PLUGIN_BRANCH=master
+fi
+
 # Install plugins:
 PLUGINS=("$@")
 
@@ -25,12 +31,12 @@ for plugin in ${PLUGINS[@]} ; do
   RBENV_PLUGIN_ROOT="${RBENV_ROOT}/plugins/$VALUE"
   if [ ! -d "$RBENV_PLUGIN_ROOT" ] ; then
     # Keep downloads lean and installs fast - grab ONLY the branch we need.
-    BRANCH=master
     mkdir -p $RBENV_PLUGIN_ROOT
     cd $RBENV_PLUGIN_ROOT
     git init
-    git remote add -t $BRANCH origin https://github.com/$KEY/$VALUE.git
-    git checkout $BRANCH
+    git remote add origin https://github.com/$KEY/$VALUE.git
+    git fetch --verbose --depth=1 origin +$PLUGIN_BRANCH:refs/remotes/origin/$PLUGIN_BRANCH
+    git checkout $PLUGIN_BRANCH
   else
     cd $RBENV_PLUGIN_ROOT
     echo "Pulling $VALUE updates."

@@ -37,7 +37,7 @@ fi
 
 
 # If the user hasn't specified which rbenv-install branch
-# to install, we default to the development branch
+# to install, we default to the master branch
 if [ "x$INSTALLER_BRANCH" = "x" ]; then
   INSTALLER_BRANCH=master
 fi
