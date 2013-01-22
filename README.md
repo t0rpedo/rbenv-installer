@@ -38,6 +38,16 @@ Update `rbenv` and plugins provided by the installer running:
 
     rbenv update
 
+Installing (Updating) a plugin
+------------------------------
+
+Install the `rbenv-vars` plugin from [sstephenson/rbenv-vars](https://github.com/sstephenson/rbenv-vars):
+
+    rbenv plugins sstephenson:rbenv-vars
+
+Install multiple plugins and update rbenv-vars plugin (installed above):
+
+    rbenv plugins sstephenson:rbenv-vars sstephenson:ruby-build fesplugas:rbenv-installer
 
 Bootstrap
 ---------
