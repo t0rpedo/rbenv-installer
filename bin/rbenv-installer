@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 # Summary: Bootstrap script of the rbenv-installer.
 #
-# Usage: curl https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+# Usage: rbenv update
 #
-# This script installs rbenv and then itself as the plugin rbenv-installer.
-# It also installs the helper plugins
+# This script installs rbenv and then itself as the plugin rbenv-installer. It
+# also installs the helper plugins
+#
 #  - sstephenson:rbenv-vars
 #  - sstephenson:ruby-build
+#
 # Once installed it makes all rbenv commands and the following rbenv-installer
 # plugin specific commands available:
+#
 #  - rbenv cleanup
 #  - rbenv bootstrap
 #  - rbenv bootstrap-ubuntu-12-04
@@ -16,6 +19,7 @@
 #  - rbenv plugin
 #  - rbenv plugins
 #  - rbenv update
+#
 
 [ -n "$RBENV_DEBUG" ] && set -x
 set -e
