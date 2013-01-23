@@ -90,12 +90,7 @@ Install Ruby `1.9.3-p374` and make it global:
 
 See [here](https://github.com/sstephenson/ruby-build) for more details.
 
-<<<<<<< HEAD
-Updating 
---------
-=======
 ## Uninstalling
->>>>>>> f40caf5d10660f89e0a4fadf4d9f93ff5b895805
 
 Uninstall Ruby `1.9.3-p194`:
 
