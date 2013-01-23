@@ -6,8 +6,14 @@ scripts to install required software to be able to compile **Ruby**.
 
 Installed plugins are `rbenv-vars`, `ruby-build` & `rbenv-installer`.
 
-Once executed, the script makes available, all `rbenv` [commands](https://github.com/sstephenson/rbenv#command-reference)
-and the following `rbenv-installer` plugin specific commands:
+Once executed, the script makes available:
+
+ - the `rbenv` [commands](https://github.com/sstephenson/rbenv#command-reference)
+ - the `rbenv-vars` plugin [commands](https://github.com/sstephenson/rbenv-vars)
+ - the `ruby-build` plugin [commands](https://github.com/sstephenson/ruby-build)
+
+as well as the following `rbenv-installer` plugin specific commands:
+
  - rbenv cleanup
  - rbenv bootstrap
  - rbenv bootstrap-ubuntu-10-04
@@ -66,11 +72,24 @@ Install Ruby `1.9.3-p194` and make it global:
     rbenv install 1.9.3-p194
     rbenv global 1.9.3-p194
 
-### Cleanup a Ruby's Gems
+See [here](https://github.com/sstephenson/ruby-build) for more details.
+
+## Uninstalling
+
+Uninstall Ruby `1.9.3-p194`:
+
+    rbenv uninstall 1.9.3-p194
+
+See [here](https://github.com/sstephenson/ruby-build) for more details.
+
+# Managing a Ruby's Gems
+## Cleanup
 
 Remove all the gems for the current Ruby:
 
     rbenv cleanup
+
+See [Bundler](http://gembundler.com/) and [RubyGems](http://rubygems.org/pages/download) for additional tooling.
 
 # Managing Rbenv Plugins
 ## Installing (Updating) a plugin
