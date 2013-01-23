@@ -6,11 +6,11 @@ scripts to install required software to be able to compile **Ruby**.
 
 Installed plugins are `rbenv-vars`, `ruby-build` & `rbenv-installer`.
 
-Once installed the script makes available all `rbenv` [commands](https://github.com/sstephenson/rbenv#command-reference)
-and the following `rbenv-installer` plugin specific commands available:
+Once executed, the script makes available, all `rbenv` [commands](https://github.com/sstephenson/rbenv#command-reference)
+and the following `rbenv-installer` plugin specific commands:
  - rbenv cleanup
  - rbenv bootstrap
- - rbenv bootstrap-ubuntu-12-04
+ - rbenv bootstrap-ubuntu-10-04
  - rbenv bootstrap-ubuntu-12-04
  - rbenv plugin
  - rbenv plugins
@@ -40,9 +40,10 @@ The friends installed by default are the plugins:
 ### For developers
 Default behavior is to install from the `master` branches. To install from:
 
- - the `abc` branch of [sstephenson/rbenv]
- - the `xyz` branch of [fesplugas/rbenv-installer]
+ - the `abc` branch of [sstephenson/rbenv](https://github.com/sstephenson/rbenv)
+ - the `xyz` branch of [fesplugas/rbenv-installer](https://github.com/fesplugas/rbenv-installer)
  - the `klm` branch of the plugins [sstephenson:rbenv-vars](https://github.com/sstephenson/rbenv-vars) and [sstephenson:ruby-build](https://github.com/sstephenson/ruby-build)
+
 
     export RBENV_BRANCH=abc
     export RBENV_INSTALLER_BRANCH=xyz
@@ -52,7 +53,7 @@ Default behavior is to install from the `master` branches. To install from:
 
 ## Updating rbenv
 
-Update `rbenv` and plugins provided by the installer running:
+To update `rbenv` and the plugins provided by this installer run:
 
     rbenv update
 
@@ -65,12 +66,13 @@ Install Ruby `1.9.3-p194` and make it global:
     rbenv install 1.9.3-p194
     rbenv global 1.9.3-p194
 
-### Cleanup Ruby's Gems
+### Cleanup a Ruby's Gems
 
 Remove all the gems for the current Ruby:
 
     rbenv cleanup
 
+# Managing Rbenv Plugins
 ## Installing (Updating) a plugin
 
 ### Example 1: Install then update+install
