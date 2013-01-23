@@ -16,8 +16,8 @@ fi
 
 # If the user hasn't specified which rbenv-plugin branch
 # to install, we default to the master branch
-if [ "x$PLUGIN_BRANCH" = "x" ]; then
-  PLUGIN_BRANCH=master
+if [ "x$RBENV_PLUGIN_BRANCH" = "x" ]; then
+  RBENV_PLUGIN_BRANCH=master
 fi
 
 # Install plugins:
@@ -36,11 +36,11 @@ for plugin in ${PLUGINS[@]} ; do
     git init
     git remote add --no-tags origin https://github.com/$AUTHOR/$PLUGIN.git
     git remote set-url --push origin disabled
-    git fetch --no-tags --depth=1 origin +$PLUGIN_BRANCH:refs/remotes/origin/$PLUGIN_BRANCH
-    git checkout $PLUGIN_BRANCH
+    git fetch --no-tags --depth=1 origin +$RBENV_PLUGIN_BRANCH:refs/remotes/origin/$RBENV_PLUGIN_BRANCH
+    git checkout $RBENV_PLUGIN_BRANCH
   else
     cd $RBENV_PLUGIN_ROOT
-    git pull --no-tags --depth=1 origin +$PLUGIN_BRANCH:refs/remotes/origin/$PLUGIN_BRANCH
+    git pull --no-tags --depth=1 origin +$RBENV_PLUGIN_BRANCH:refs/remotes/origin/$RBENV_PLUGIN_BRANCH
   fi
 
 done
