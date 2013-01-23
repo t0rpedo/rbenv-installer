@@ -1,4 +1,21 @@
 #!/usr/bin/env bash
+# Summary: Bootstrap script of the rbenv-installer.
+#
+# Usage: curl https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+#
+# This script installs rbenv and then itself as the plugin rbenv-installer.
+# It also installs the helper plugins
+#  - sstephenson:rbenv-vars
+#  - sstephenson:ruby-build
+# Once installed it makes all rbenv commands and the following rbenv-installer
+# plugin specific commands available:
+#  - rbenv cleanup
+#  - rbenv bootstrap
+#  - rbenv bootstrap-ubuntu-12-04
+#  - rbenv bootstrap-ubuntu-12-04
+#  - rbenv plugin
+#  - rbenv plugins
+#  - rbenv update
 
 # Verify Git is installed:
 if [ ! $(which git) ]; then
@@ -10,20 +27,77 @@ if [ -z "${RBENV_ROOT}" ]; then
   RBENV_ROOT="$HOME/.rbenv"
 fi
 
-# Install rbenv:
-if [ ! -d "$RBENV_ROOT" ] ; then
-  git clone https://github.com/sstephenson/rbenv.git $RBENV_ROOT
-else
+rbenv_git_init(){
   cd $RBENV_ROOT
   if [ ! -d '.git' ]; then
     git init
-    git remote add origin https://github.com/sstephenson/rbenv.git
+    git remote add origin https://github.com/$RBENV_AUTHOR/rbenv.git
+    git remote set-url --push origin disabled
+    git fetch --depth=1 origin +$RBENV_BRANCH:refs/remotes/origin/$RBENV_BRANCH
+    git checkout $RBENV_BRANCH
   fi
-  git pull origin master
+}
+
+# Allow developers to point to a WIP rbenv-installer
+# to install, we default to sstephenson
+if [ "x$RBENV_AUTHOR" = "x" ]; then
+  RBENV_AUTHOR=sstephenson
+fi
+
+# Allow developers to point to WIP rbenv plugins
+# to install, we default to sstephenson
+if [ "x$RBENV_PLUGIN_AUTHOR" = "x" ]; then
+  RBENV_PLUGIN_AUTHOR=sstephenson
+fi
+
+# If the user hasn't specified which rbenv branch
+# to install, we default to the master branch
+if [ "x$RBENV_BRANCH" = "x" ]; then
+  RBENV_BRANCH=master
+fi
+
+# Install rbenv:
+if [ ! -d "$RBENV_ROOT" ] ; then
+  mkdir -p $RBENV_ROOT
+  rbenv_git_init
+else
+  rbenv_git_init
+  git pull --no-tags --depth=1 origin +$RBENV_BRANCH:refs/remotes/origin/$RBENV_BRANCH
+fi
+
+
+# Allow developers to point to a WIP rbenv-installer
+# to install, we default to fesplugas
+if [ "x$RBENV_INSTALLER_AUTHOR" = "x" ]; then
+  RBENV_INSTALLER_AUTHOR=fesplugas
+fi
+
+# If the developer hasn't specified which rbenv-install branch
+# to install, we default to the master branch
+if [ "x$RBENV_INSTALLER_BRANCH" = "x" ]; then
+  RBENV_INSTALLER_BRANCH=master
+fi
+
+# Install rbenv-installer
+
+PLUGIN=rbenv-installer
+RBENV_PLUGIN_ROOT="${RBENV_ROOT}/plugins/$PLUGIN"
+if [ ! -d "$RBENV_PLUGIN_ROOT" ] ; then
+  # Keep downloads lean and installs fast - grab ONLY the branch we need.
+  mkdir -p $RBENV_PLUGIN_ROOT
+  cd $RBENV_PLUGIN_ROOT
+  git init
+  git remote add origin https://github.com/$RBENV_INSTALLER_AUTHOR/$PLUGIN.git
+  git remote set-url --push origin disabled
+  git fetch --no-tags --depth=1 origin +$RBENV_INSTALLER_BRANCH:refs/remotes/origin/$RBENV_INSTALLER_BRANCH
+  git checkout $RBENV_INSTALLER_BRANCH
+else
+  cd $RBENV_PLUGIN_ROOT
+  git pull --no-tags --depth=1 origin +$RBENV_INSTALLER_BRANCH:refs/remotes/origin/$RBENV_INSTALLER_BRANCH
 fi
 
 # Install plugins:
-$RBENV_ROOT/plugins/rbenv-installer/bin/rbenv-plugins sstephenson:rbenv-vars sstephenson:ruby-build fesplugas:rbenv-installer
+$RBENV_ROOT/plugins/$PLUGIN/bin/rbenv-plugins $RBENV_PLUGIN_AUTHOR:rbenv-vars $RBENV_PLUGIN_AUTHOR:ruby-build
 
 # Show help if `.rbenv` is not in the path:
 if [ ! $(which rbenv) ]; then
