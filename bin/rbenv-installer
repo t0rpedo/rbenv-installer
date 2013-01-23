@@ -30,6 +30,15 @@ if [ ! $(which git) ]; then
   exit 1
 fi
 
+# Allow developers to point to a WIP rbenv-installer to install:
+: ${RBENV_AUTHOR:='sstephenson'}
+: ${RBENV_PLUGIN_AUTHOR:='sstephenson'}
+: ${RBENV_BRANCH:='master'}
+
+# Allow developers to point to a WIP rbenv-installer to install:
+: ${RBENV_INSTALLER_AUTHOR:='fesplugas'}
+: ${RBENV_INSTALLER_BRANCH:='master'}
+
 if [ -z "${RBENV_ROOT}" ]; then
   RBENV_ROOT="$HOME/.rbenv"
 fi
@@ -45,11 +54,6 @@ rbenv_git_init(){
   fi
 }
 
-# Allow developers to point to a WIP rbenv-installer to installi:
-: ${RBENV_AUTHOR:='sstephenson'}
-: ${RBENV_PLUGIN_AUTHOR:='sstephenson'}
-: ${RBENV_BRANCH:='master'}
-
 # Install rbenv:
 if [ ! -d "$RBENV_ROOT" ] ; then
   mkdir -p $RBENV_ROOT
@@ -58,10 +62,6 @@ else
   rbenv_git_init
   git pull --no-tags --depth=1 origin +$RBENV_BRANCH:refs/remotes/origin/$RBENV_BRANCH
 fi
-
-# Allow developers to point to a WIP rbenv-installer to install:
-: ${RBENV_INSTALLER_AUTHOR:='fesplugas'}
-: ${RBENV_INSTALLER_BRANCH:='master'}
 
 # Install rbenv-installer
 
