@@ -41,23 +41,10 @@ rbenv_git_init(){
   fi
 }
 
-# Allow developers to point to a WIP rbenv-installer
-# to install, we default to sstephenson
-if [ "x$RBENV_AUTHOR" = "x" ]; then
-  RBENV_AUTHOR=sstephenson
-fi
-
-# Allow developers to point to WIP rbenv plugins
-# to install, we default to sstephenson
-if [ "x$RBENV_PLUGIN_AUTHOR" = "x" ]; then
-  RBENV_PLUGIN_AUTHOR=sstephenson
-fi
-
-# If the user hasn't specified which rbenv branch
-# to install, we default to the master branch
-if [ "x$RBENV_BRANCH" = "x" ]; then
-  RBENV_BRANCH=master
-fi
+# Allow developers to point to a WIP rbenv-installer to installi:
+: ${RBENV_AUTHOR:='sstephenson'}
+: ${RBENV_PLUGIN_AUTHOR:='sstephenson'}
+: ${RBENV_BRANCH:='master'}
 
 # Install rbenv:
 if [ ! -d "$RBENV_ROOT" ] ; then
@@ -68,18 +55,9 @@ else
   git pull --no-tags --depth=1 origin +$RBENV_BRANCH:refs/remotes/origin/$RBENV_BRANCH
 fi
 
-
-# Allow developers to point to a WIP rbenv-installer
-# to install, we default to fesplugas
-if [ "x$RBENV_INSTALLER_AUTHOR" = "x" ]; then
-  RBENV_INSTALLER_AUTHOR=fesplugas
-fi
-
-# If the developer hasn't specified which rbenv-install branch
-# to install, we default to the master branch
-if [ "x$RBENV_INSTALLER_BRANCH" = "x" ]; then
-  RBENV_INSTALLER_BRANCH=master
-fi
+# Allow developers to point to a WIP rbenv-installer to install:
+: ${RBENV_INSTALLER_AUTHOR:='fesplugas'}
+: ${RBENV_INSTALLER_BRANCH:='master'}
 
 # Install rbenv-installer
 
