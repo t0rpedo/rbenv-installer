@@ -44,7 +44,7 @@ if [ "x$RBENV_AUTHOR" = "x" ]; then
   RBENV_AUTHOR=sstephenson
 fi
 
-# Allow developers to point to a WIP rbenv-installer
+# Allow developers to point to WIP rbenv plugins
 # to install, we default to sstephenson
 if [ "x$RBENV_PLUGIN_AUTHOR" = "x" ]; then
   RBENV_AUTHOR=sstephenson
