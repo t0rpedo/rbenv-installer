@@ -17,6 +17,9 @@
 #  - rbenv plugins
 #  - rbenv update
 
+[ -n "$RBENV_DEBUG" ] && set -x
+set -e
+
 # Verify Git is installed:
 if [ ! $(which git) ]; then
   echo "Git is not installed, can't continue."
