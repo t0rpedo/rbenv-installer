@@ -44,6 +44,10 @@ The friends installed by default are the plugins:
  - [sstephenson:rbenv-vars](https://github.com/sstephenson/rbenv-vars)
  - [sstephenson:ruby-build](https://github.com/sstephenson/ruby-build)
 
+Install development version using:
+
+    curl https://raw.github.com/fesplugas/rbenv-installer/develop/bin/rbenv-installer | bash
+
 ### For developers
 
 You can test your in-development version of the rbenv-installer (on Github):
