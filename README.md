@@ -44,12 +44,12 @@ Default behavior is to install from the `master` branches. To install from:
  - the `xyz` branch of [fesplugas/rbenv-installer](https://github.com/fesplugas/rbenv-installer)
  - the `klm` branch of the plugins [sstephenson:rbenv-vars](https://github.com/sstephenson/rbenv-vars) and [sstephenson:ruby-build](https://github.com/sstephenson/ruby-build)
 
-
-    export RBENV_BRANCH=abc
-    export RBENV_INSTALLER_BRANCH=xyz
-    export RBENV_PLUGIN_BRANCH=klm
-    curl https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
-
+````
+export RBENV_BRANCH=abc
+export RBENV_INSTALLER_BRANCH=xyz
+export RBENV_PLUGIN_BRANCH=klm
+curl https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+````
 
 ## Updating rbenv
 
