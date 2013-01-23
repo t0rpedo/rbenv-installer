@@ -31,12 +31,24 @@ rbenv_git_init(){
   cd $RBENV_ROOT
   if [ ! -d '.git' ]; then
     git init
-    git remote add origin https://github.com/sstephenson/rbenv.git
+    git remote add origin https://github.com/$RBENV_AUTHOR/rbenv.git
     git remote set-url --push origin disabled
     git fetch --depth=1 origin +$RBENV_BRANCH:refs/remotes/origin/$RBENV_BRANCH
     git checkout $RBENV_BRANCH
   fi
 }
+
+# Allow developers to point to a WIP rbenv-installer
+# to install, we default to sstephenson
+if [ "x$RBENV_AUTHOR" = "x" ]; then
+  RBENV_AUTHOR=sstephenson
+fi
+
+# Allow developers to point to a WIP rbenv-installer
+# to install, we default to sstephenson
+if [ "x$RBENV_PLUGIN_AUTHOR" = "x" ]; then
+  RBENV_AUTHOR=sstephenson
+fi
 
 # If the user hasn't specified which rbenv branch
 # to install, we default to the master branch
@@ -54,13 +66,13 @@ else
 fi
 
 
-# Allow devs to point to a WIP rbenv-installer
+# Allow developers to point to a WIP rbenv-installer
 # to install, we default to fesplugas
 if [ "x$RBENV_INSTALLER_AUTHOR" = "x" ]; then
   RBENV_INSTALLER_AUTHOR=fesplugas
 fi
 
-# If the user hasn't specified which rbenv-install branch
+# If the developer hasn't specified which rbenv-install branch
 # to install, we default to the master branch
 if [ "x$RBENV_INSTALLER_BRANCH" = "x" ]; then
   RBENV_INSTALLER_BRANCH=master
@@ -85,7 +97,7 @@ else
 fi
 
 # Install plugins:
-$RBENV_ROOT/plugins/$PLUGIN/bin/rbenv-plugins sstephenson:rbenv-vars sstephenson:ruby-build
+$RBENV_ROOT/plugins/$PLUGIN/bin/rbenv-plugins $RBENV_PLUGIN_AUTHOR:rbenv-vars $RBENV_PLUGIN_AUTHOR:ruby-build
 
 # Show help if `.rbenv` is not in the path:
 if [ ! $(which rbenv) ]; then

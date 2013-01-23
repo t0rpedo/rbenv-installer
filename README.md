@@ -44,6 +44,16 @@ The friends installed by default are the plugins:
  - [sstephenson:ruby-build](https://github.com/sstephenson/ruby-build)
 
 ### For developers
+You can test your in-development version of the rbenv-installer (on Github):
+
+    rm -rf ~/.rbenv/plugins
+    export RBENV_INSTALLER_AUTHOR=taqtiqa-mark
+    export RBENV_INSTALLER_BRANCH=feature/plugin
+    curl -L https://raw.github.com/$RBENV_INSTALLER_AUTHOR/rbenv-installer/$RBENV_INSTALLER_BRANCH/bin/rbenv-installer|bash
+
+Similarly, you can set the `RBENV_AUTHOR` and `RBENV_PLUGIN_AUTHOR` Github names.
+Both of these default to [sstephenson](https://github.com/sstephenson).
+
 Default behavior is to install from the `master` branches. To install from:
 
  - the `abc` branch of [sstephenson/rbenv](https://github.com/sstephenson/rbenv)
