@@ -82,7 +82,7 @@ Install the `rbenv-vars` plugin from [sstephenson/rbenv-vars](https://github.com
 
     rbenv plugin sstephenson:rbenv-vars
 
-Install multiple plugins and update rbenv-vars plugin (installed above):
+Install `ruby-build` plugin and update `rbenv-vars` plugin (installed above):
 
     rbenv plugins sstephenson:rbenv-vars sstephenson:ruby-build
 
