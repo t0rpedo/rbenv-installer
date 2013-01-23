@@ -6,17 +6,26 @@ scripts to install required software to be able to compile **Ruby**.
 
 Installed plugins are `rbenv-vars`, `ruby-build` & `rbenv-installer`.
 
+Once installed the script makes available all `rbenv` [commands](https://github.com/sstephenson/rbenv#command-reference)
+and the following `rbenv-installer` plugin specific commands available:
+ - rbenv cleanup
+ - rbenv bootstrap
+ - rbenv bootstrap-ubuntu-12-04
+ - rbenv bootstrap-ubuntu-12-04
+ - rbenv plugin
+ - rbenv plugins
+ - rbenv update
 
-Before Installing
------------------
+## Before Installing
 
 Install `git` and `curl`:
 
     sudo apt-get -y install git-core curl
 
 
-Install
--------
+# Managing rbenv and rbenv-installer plugins
+
+## Installing rbenv
 
 ### For users
 Install [rbenv] and friends by running:
@@ -41,24 +50,28 @@ Default behavior is to install from the `master` branches. To install from:
     curl https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
 
 
-Installing a Ruby
------------------
+## Updating rbenv
+
+Update `rbenv` and plugins provided by the installer running:
+
+    rbenv update
+
+# Managing a Ruby
+
+## Installing
 
 Install Ruby `1.9.3-p194` and make it global:
 
     rbenv install 1.9.3-p194
     rbenv global 1.9.3-p194
 
+### Cleanup Ruby's Gems
 
-Updating
---------
+Remove all the gems for the current Ruby:
 
-Update `rbenv` and plugins provided by the installer running:
+    rbenv cleanup
 
-    rbenv update
-
-Installing (Updating) a plugin
-------------------------------
+## Installing (Updating) a plugin
 
 ### Example 1: Install then update+install
 
@@ -78,8 +91,7 @@ Install the `xyz` plugin from the `develop` branch of ABC's repository `xyz`:
     export RBENV_PLUGIN_BRANCH=develop
     rbenv plugin abc:xyz
 
-Bootstrap
----------
+## Bootstrap
 
 If you are installing `rbenv` in Ubuntu you'll probably need to install
 required packages first:
@@ -92,8 +104,7 @@ To update `RubyGems` and install `bundler` and `rake`:
     rbenv bootstrap
 
 
-About rbenv
------------
+## About rbenv
 
 **rbenv** source code is available at <https://github.com/sstephenson/rbenv>
 

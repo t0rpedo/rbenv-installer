@@ -4,7 +4,8 @@
 # Usage: rbenv plugin <github_user>:<github_repo>
 #        rbenv plugins <github_user_a>:<github_repo_a> <github_user_b>:<github_repo_b> ...
 #
-# Installs the Github user's repository master branch as the rbenv plugin.
+# Installs the Github user's repository branch $RBENV_PLUGIN_BRANCH (default is master)
+# as the rbenv plugin.
 # The GitHub repository name is used as the rbenv plugin name.
 
 set -e
