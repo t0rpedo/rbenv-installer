@@ -47,7 +47,7 @@ fi
 # Allow developers to point to WIP rbenv plugins
 # to install, we default to sstephenson
 if [ "x$RBENV_PLUGIN_AUTHOR" = "x" ]; then
-  RBENV_AUTHOR=sstephenson
+  RBENV_PLUGIN_AUTHOR=sstephenson
 fi
 
 # If the user hasn't specified which rbenv branch
