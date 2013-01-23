@@ -54,6 +54,12 @@ else
 fi
 
 
+# Allow devs to point to a WIP rbenv-installer
+# to install, we default to fesplugas
+if [ "x$RBENV_INSTALLER_AUTHOR" = "x" ]; then
+  RBENV_INSTALLER_AUTHOR=fesplugas
+fi
+
 # If the user hasn't specified which rbenv-install branch
 # to install, we default to the master branch
 if [ "x$RBENV_INSTALLER_BRANCH" = "x" ]; then
@@ -61,7 +67,7 @@ if [ "x$RBENV_INSTALLER_BRANCH" = "x" ]; then
 fi
 
 # Install rbenv-installer
-AUTHOR=fesplugas
+
 PLUGIN=rbenv-installer
 RBENV_PLUGIN_ROOT="${RBENV_ROOT}/plugins/$PLUGIN"
 if [ ! -d "$RBENV_PLUGIN_ROOT" ] ; then
@@ -69,7 +75,7 @@ if [ ! -d "$RBENV_PLUGIN_ROOT" ] ; then
     mkdir -p $RBENV_PLUGIN_ROOT
     cd $RBENV_PLUGIN_ROOT
     git init
-    git remote add origin https://github.com/$AUTHOR/$PLUGIN.git
+    git remote add origin https://github.com/$RBENV_INSTALLER_AUTHOR/$PLUGIN.git
     git remote set-url --push origin disabled
     git fetch --no-tags --depth=1 origin +$RBENV_INSTALLER_BRANCH:refs/remotes/origin/$RBENV_INSTALLER_BRANCH
     git checkout $RBENV_INSTALLER_BRANCH
