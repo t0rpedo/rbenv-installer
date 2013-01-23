@@ -18,8 +18,26 @@ Install `git` and `curl`:
 Install
 -------
 
+### For users
 Install [rbenv] and friends by running:
 
+    curl https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+
+The friends installed by default are the plugins:
+
+ - [sstephenson:rbenv-vars](https://github.com/sstephenson/rbenv-vars)
+ - [sstephenson:ruby-build](https://github.com/sstephenson/ruby-build)
+
+### For developers
+Default behavior is to install from the `master` branches. To install from:
+
+ - the `abc` branch of [sstephenson/rbenv]
+ - the `xyz` branch of [fesplugas/rbenv-installer]
+ - the `klm` branch of the plugins [sstephenson:rbenv-vars](https://github.com/sstephenson/rbenv-vars) and [sstephenson:ruby-build](https://github.com/sstephenson/ruby-build)
+
+    export RBENV_BRANCH=abc
+    export RBENV_INSTALLER_BRANCH=xyz
+    export RBENV_PLUGIN_BRANCH=klm
     curl https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
 
 
@@ -42,13 +60,23 @@ Update `rbenv` and plugins provided by the installer running:
 Installing (Updating) a plugin
 ------------------------------
 
+### Example 1: Install then update+install
+
+Default behavior is to install from the `master` branch.
 Install the `rbenv-vars` plugin from [sstephenson/rbenv-vars](https://github.com/sstephenson/rbenv-vars):
 
-    rbenv plugins sstephenson:rbenv-vars
+    rbenv plugin sstephenson:rbenv-vars
 
 Install multiple plugins and update rbenv-vars plugin (installed above):
 
-    rbenv plugins sstephenson:rbenv-vars sstephenson:ruby-build fesplugas:rbenv-installer
+    rbenv plugins sstephenson:rbenv-vars sstephenson:ruby-build
+
+### Example 2: Install from a specific branch
+
+Install the `xyz` plugin from the `develop` branch of ABC's repository `xyz`:
+
+    export RBENV_PLUGIN_BRANCH=develop
+    rbenv plugin abc:xyz
 
 Bootstrap
 ---------
