@@ -42,8 +42,8 @@ Install [rbenv] and friends by running:
 You can test your in-development version of the rbenv-installer (on Github):
 
     rm -rf ~/.rbenv/plugins
-    export RBENV_INSTALLER_AUTHOR=taqtiqa-mark
-    export RBENV_INSTALLER_BRANCH=feature/plugin
+    export RBENV_INSTALLER_AUTHOR=yourname
+    export RBENV_INSTALLER_BRANCH=yourbranch
     curl -L https://raw.github.com/$RBENV_INSTALLER_AUTHOR/rbenv-installer/$RBENV_INSTALLER_BRANCH/bin/rbenv-installer|bash
 
 Similarly, you can set the `RBENV_AUTHOR` and `RBENV_PLUGIN_AUTHOR` Github names.
