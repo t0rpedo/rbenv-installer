@@ -14,7 +14,7 @@
 #
 #  - rbenv cleanup
 #  - rbenv bootstrap
-#  - rbenv bootstrap-ubuntu-12-04
+#  - rbenv bootstrap-ubuntu-10-04
 #  - rbenv bootstrap-ubuntu-12-04
 #  - rbenv plugin
 #  - rbenv plugins
