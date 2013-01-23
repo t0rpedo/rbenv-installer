@@ -15,7 +15,8 @@ rbenv_git_init(){
   if [ ! -d '.git' ]; then
     git init
     git remote add origin https://github.com/sstephenson/rbenv.git
-    git fetch --verbose --depth=1 origin +$RBENV_BRANCH:refs/remotes/origin/$RBENV_BRANCH
+    git remote set-url --push origin disabled
+    git fetch --depth=1 origin +$RBENV_BRANCH:refs/remotes/origin/$RBENV_BRANCH
     git checkout $RBENV_BRANCH
   fi
 }
@@ -32,7 +33,7 @@ if [ ! -d "$RBENV_ROOT" ] ; then
   rbenv_git_init
 else
   rbenv_git_init
-  git pull origin $RBENV_BRANCH
+  git pull --no-tags --depth=1 origin +$RBENV_BRANCH:refs/remotes/origin/$RBENV_BRANCH
 fi
 
 
@@ -43,24 +44,26 @@ if [ "x$INSTALLER_BRANCH" = "x" ]; then
 fi
 
 # Install rbenv-installer
-KEY=fesplugas
-VALUE=rbenv-installer
-RBENV_PLUGIN_ROOT="${RBENV_ROOT}/plugins/$VALUE"
+AUTHOR=fesplugas
+PLUGIN=rbenv-installer
+RBENV_PLUGIN_ROOT="${RBENV_ROOT}/plugins/$PLUGIN"
 if [ ! -d "$RBENV_PLUGIN_ROOT" ] ; then
     # Keep downloads lean and installs fast - grab ONLY the branch we need.
     mkdir -p $RBENV_PLUGIN_ROOT
     cd $RBENV_PLUGIN_ROOT
     git init
-    git remote add origin https://github.com/$KEY/$VALUE.git
-    git fetch --verbose --depth=1 origin +$INSTALLER_BRANCH:refs/remotes/origin/$INSTALLER_BRANCH
+    git remote add origin https://github.com/$AUTHOR/$PLUGIN.git
+    git remote set-url --push origin disabled
+    git fetch --no-tags --depth=1 origin +$INSTALLER_BRANCH:refs/remotes/origin/$INSTALLER_BRANCH
     git checkout $INSTALLER_BRANCH
 else
   cd $RBENV_PLUGIN_ROOT
   git pull
+  git pull --no-tags --depth=1 origin +$INSTALLER_BRANCH:refs/remotes/origin/$INSTALLER_BRANCH
 fi
 
 # Install plugins:
-$RBENV_ROOT/plugins/$VALUE/bin/rbenv-plugins sstephenson:rbenv-vars sstephenson:ruby-build
+$RBENV_ROOT/plugins/$PLUGIN/bin/rbenv-plugins sstephenson:rbenv-vars sstephenson:ruby-build
 
 # Show help if `.rbenv` is not in the path:
 if [ ! $(which rbenv) ]; then
